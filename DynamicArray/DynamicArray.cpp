@@ -5,14 +5,12 @@ DynamicArray::DynamicArray():ptr(nullptr),size(0)
 {}
 DynamicArray::DynamicArray(int S)
 {
-	cout << "Construct by 1 param\n";
 	size = S;
 	ptr = new int[S];	
 }
 
 DynamicArray::DynamicArray(const DynamicArray & a)// copy constructor
 {
-	cout << "Copy construct\n";
 	size = a.size;
 	ptr = new int[size];
 	for (int i = 0; i < size; i++)
@@ -22,7 +20,6 @@ DynamicArray::DynamicArray(const DynamicArray & a)// copy constructor
 }
 DynamicArray::~DynamicArray()
 {
-	cout << "Destruct\n";
 	if (ptr != 0)
 	{
 		delete[] ptr;
@@ -144,3 +141,72 @@ DynamicArray DynamicArray::operator*(int b)
 	}
 	return New;
 }
+
+DynamicArray DynamicArray::operator-(DynamicArray minus)
+{
+	int sn = this->size - minus.size;
+	if (sn > 0) {
+		DynamicArray buffe(sn);
+		for (size_t i = 0; i < this->size - minus.size; i++)
+		{
+			buffe.ptr[i] = this->ptr[i];
+		}
+		return buffe;
+	}
+	else {
+		DynamicArray buffe;
+		return buffe;
+	}
+	
+}
+
+DynamicArray DynamicArray::operator+(DynamicArray plus)
+{
+	DynamicArray buff(this->size + plus.size);
+	for (size_t i = 0; i < this->size; i++)
+	{
+		buff.ptr[i] = this->ptr[i];
+	}
+	for (size_t i = this->size; i < this->size + plus.size; i++)
+	{
+		buff.ptr[i] = plus.ptr[i-this->size];
+	}
+	return buff;
+}
+
+DynamicArray& DynamicArray::operator++()
+{
+	DynamicArray buff(this->size);
+	for (size_t i = 0; i < this->size; i++)
+	{
+		buff.ptr[i] = this->ptr[i];
+	}
+	delete[] this->ptr;
+	this->ptr = new int[this->size+1];
+	for (size_t i = 0; i < this->size; i++)
+	{
+		this->ptr[i] = buff.ptr[i];
+	}
+	this->ptr[this->size] = 0;
+	this->size++;
+	return *this;
+}
+
+DynamicArray& DynamicArray::operator--()
+{
+	DynamicArray buff(this->size);
+	for (size_t i = 0; i < this->size; i++)
+	{
+		buff.ptr[i] = this->ptr[i];
+	}
+	delete[] this->ptr;
+	this->ptr = new int[this->size - 1];
+	for (size_t i = 0; i < this->size - 1; i++)
+	{
+		this->ptr[i] = buff.ptr[i];
+	}
+	this->size--;
+	return *this;
+}
+
+

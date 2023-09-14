@@ -24,7 +24,10 @@ public:
 	DynamicArray operator-(int b);
 	DynamicArray operator*(int b);
 
-
+	DynamicArray operator-(DynamicArray minus);
+	DynamicArray operator+(DynamicArray plus);
+	DynamicArray& operator++();
+	DynamicArray& operator--();
 
 };
 
