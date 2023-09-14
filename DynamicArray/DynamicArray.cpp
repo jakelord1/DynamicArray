@@ -109,3 +109,38 @@ void DynamicArray::ReSize(int size)
 	}
 	this->size += size;
 }
+
+DynamicArray DynamicArray::operator+(int b)
+{
+	DynamicArray buff(this->size + b);
+	for (size_t i = 0; i < this->size; i++)
+	{
+		buff.ptr[i] = this->ptr[i];
+	}
+	for (size_t i = this->size; i < this->size + b; i++)
+	{
+		buff.ptr[i] = 0;
+	}
+	return buff;
+}
+
+DynamicArray DynamicArray::operator-(int b)
+{
+	int sn = this->size - b;
+	DynamicArray buffe(sn);
+	for (size_t i = 0; i < this->size-b; i++)
+	{
+		buffe.ptr[i] = this->ptr[i];
+	}
+	return buffe;
+}
+
+DynamicArray DynamicArray::operator*(int b)
+{
+	DynamicArray New(this->size);
+	for (size_t i = 0; i < this->size; i++)
+	{
+		New.ptr[i] = this->ptr[i] * b;
+	}
+	return New;
+}

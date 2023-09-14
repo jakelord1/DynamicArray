@@ -8,19 +8,21 @@ class DynamicArray
 	int size;  // размер массива 
 public:
 	DynamicArray();
-	DynamicArray(int);
-	DynamicArray(const DynamicArray&); // copy constructor
+	DynamicArray(int f);
+	DynamicArray(const DynamicArray&);
 	~DynamicArray();
-	void Input();// rand
-	void Output()const;// вывод на консоль
+	void Input();
+	void Output()const;
 	int * GetPointer()const;
 	int GetSize()const;
 	void Reverse();
 	int Search(int a) const;
 	void Sort();
 	void ReSize(int size);
-	// реилизовать следующие методы:
-	//void ReSize(int size);// изменение размера массива
+	
+	DynamicArray operator+(int b);
+	DynamicArray operator-(int b);
+	DynamicArray operator*(int b);
 
 
 

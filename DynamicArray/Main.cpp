@@ -1,6 +1,7 @@
 #pragma once
 #include "DynamicArray.h"
-
+#include <iostream>
+using namespace std;
 
 
 DynamicArray GetObj() //возврат по значению
@@ -12,14 +13,20 @@ DynamicArray GetObj() //возврат по значению
 }
 void main()
 {
-	DynamicArray a(5); // constructor 1 param
+	DynamicArray a(15); // constructor 1 param
 	a.Input();
+	cout << "Original" << endl;
 	a.Output();
-	DynamicArray b = a; // copy constructor
-	b.Output();
-
-	DynamicArray rezult = GetObj();
-
+	
+	DynamicArray arr1 = a + 5;
+	cout << "Original+5" << endl;
+	arr1.Output();
+	DynamicArray arr2 = a - 3;
+	cout << "Original-1" << endl;
+	arr2.Output();
+	DynamicArray arr3 = a * 2;
+	cout << "Original*2" << endl;
+	arr3.Output();
 
 	system("pause");
 }
